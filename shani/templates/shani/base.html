@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      {% block titel %}
+        Portfolio
+      {% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+
+  <body class="loading">
+    <div class="loader">
+      <div class="loader-inner">
+        <h1 class="loader-text">
+          <span>M</span><span>r</span><span>.</span>
+          <span>S</span><span>h</span><span>a</span><span>n</span><span>i</span>
+        </h1>
+        <p class="loader-subtext">Python Full-Stack Developer</p>
+        <div class="loader-line"></div>
+      </div>
+    </div>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor"></div>
+    <button class="theme-toggle">🌙</button>
+
+    <!-- Header section -->
+    <header>
+      <nav>
+        <!-- LOGO -->
+        <div class="logo">
+          S<span>N</span>
+        </div>
+
+        <!-- MENU -->
+        <ul class="menu">
+          <li>
+            <a href="#homm" data-text="Home"><span>Home</span></a>
+          </li>
+          <li>
+            <a href="#about" data-text="About"><span>About</span></a>
+          </li>
+          <li>
+            <a href="#skillll" data-text="Skill"><span>Skill</span></a>
+          </li>
+          <li>
+            <a href="#jorny" data-text="Journey"><span>Journey</span></a>
+          </li>
+          <li>
+            <a href="#services" data-text="Services"><span>Services</span></a>
+          </li>
+          <li>
+            <a href="#contactt" data-text="Contact"><span>Contact</span></a>
+          </li>
+        </ul>
+
+        <!-- BUTTONS -->
+        <div class="buttons">
+          <a href="{% static 'files/resume.pdf' %}" target="_blank" download>
+            <button>
+              <span class="btn-front"><i class="fa-solid fa-download"></i> Resume</span>
+              <span class="btn-back">Download Now</span>
+            </button>
+          </a>
+          <a href="#contactt">
+            <button>
+              <span class="btn-front">Lets Connect</span>
+              <span class="btn-back">Say Hello</span>
+            </button>
+          </a>
+        </div>
+
+        <div class="menuicon">
+          <i class="fa-solid fa-bars" id="openMenu"></i>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Aside Menu -->
+    <aside id="asideMenu">
+      <div class="aside-top">
+        <i class="fa-solid fa-xmark" id="closeMenu"></i>
+        <a href="">S <span>N</span></a>
+      </div>
+
+      <ul class="aside-links">
+        <li>
+          <i class="fa-sharp fa-regular fa-house"></i> <a href="#homm">Home</a>
+        </li>
+        <li>
+          <i class="fa-solid fa-user"></i> <a href="#about">About</a>
+        </li>
+        <li>
+          <i class="fa-solid fa-code"></i> <a href="#skillll">Skill</a>
+        </li>
+        <li>
+          <i class="fa-solid fa-folder-open"></i> <a href="#jorny">Journey</a>
+        </li>
+        <li>
+          <i class="fa-sharp-duotone fa-solid fa-code"></i> <a href="#services">Services</a>
+        </li>
+        <li>
+          <i class="fa-solid fa-envelope"></i><a href="#contactt">Contact</a>
+        </li>
+      </ul>
+
+      <!-- SOCIAL ICONS -->
+      <div class="social">
+        <a href="https://www.instagram.com/mr.shani1914/" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
+
+        <a href="https://github.com/shaniprajapatiN7054" target="_blank"><i class="fa-brands fa-github"></i></a>
+
+        <a href="https://wa.me/919565715774?text=Hi%20Er.%20Shani,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you." target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+        <a href="https://www.linkedin.com/in/shani-prajapati-shani-prajapati-015778377/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+
+        <a href="mailto:sshaniprajapati3@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </aside>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- ========== Footer Sction =========== -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <!-- LEFT -->
+        <div class="footer-left">
+          <h2>Er. Shani</h2>
+          <p>Python Fullstack Developer (Fresher)</p>
+          <span>Learning • Building • Improving</span>
+        </div>
+
+        <div class="footer-center">
+          <h3>Tech Stack</h3>
+          <p>HTML • CSS • JavaScript • Bootstrap • React</p>
+          <p>Python • Django • MySQL • Git & Github</p>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="footer-right">
+          <h3>Connect</h3>
+          <div class="socials">
+            <a href="https://github.com/shaniprajapatiN7054"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/shani-prajapati-shani-prajapati-015778377/"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/mr.shani1914/"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/919565715774?text=Hi%20Er.%20Shani,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you."><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Er. Shani • Built with passion</p>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+    <script src="{% static 'js/script.js' %}" defer></script>
+  </body>
+</html>

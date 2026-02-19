@@ -1,0 +1,288 @@
+{% extends 'shani/base.html' %}
+{% load static %}
+{% block title %}
+  Home | Portfolio
+{% endblock %}
+
+{% block content %}
+  <!-- ============= Hero Section ============ -->
+  <section class="hero" id="homm">
+    <div class="herologo">
+      <img src="{% static 'images/logo.jpg' %}" alt="Logo" />
+    </div>
+
+    <h1 class="hero-title">Shani's <br /><span>Space</span></h1>
+
+    <p class="tagline">
+      Python Full-Stack Developer <br /> (Django • React • MySQL)
+    </p>
+
+    <div class="status">Open for Junior Developer Role</div>
+
+    <div class="scroll-down">↓ Scroll</div>
+  </section>
+
+  <!-- ================ About Section ==================== -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-content">
+        <!-- Heading -->
+        <h2 class="about-heading">ABOUT ME</h2>
+
+        <!-- Intro Text -->
+        <p class="about-intro">
+          Hi, I'm <strong>Shani</strong> — a Fullstack Developer passionate about crafting modern digital experiences. I specialize in building responsive web applications using <strong>React.js, Django, MySQL, and GitHub</strong>, and I love turning ideas into functional, user-friendly solutions.
+        </p>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <a href="tel:+919565715574" class="contact-button">
+            <span><i class="ri-phone-line"></i></span>
+            +91-9565715574
+          </a>
+          <a href="mailto:sshaniprajapati3@gmail.com" class="contact-button"><span><i class="ri-mail-unread-fill"></i></span> sshaniprajapati3@gmail.com</a>
+
+          <!-- Social Icons -->
+          <div class="social-icons">
+            <a href="https://github.com/shaniprajapatiN7054" target="_blank"><i class="ri-github-fill"></i></a>
+            <a href="https://www.linkedin.com/in/shani-prajapati-shani-prajapati-015778377/" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
+            <a href="https://wa.me/919565715774?text=Hi%20Er.%20Shani,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you." target="_blank"><i class="ri-whatsapp-line"></i></a>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="cta-buttons">
+          <a href="#jorny" class="cta-button">My Story</a>
+          <a href="#contactt" class="cta-button">Hire Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="box" id="skillll">
+    <h1 class="shead">Skills</h1>
+    <div class="skills">
+      <!-- ================= FRONTEND ================= -->
+      <div class="skill">
+        <div class="simg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML" />
+        </div>
+        <span class="name">HTML</span>
+        <span class="level green">Comfortable</span>
+      </div>
+
+      <div class="skill">
+        <div class="simg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS" />
+        </div>
+        <span class="name">CSS</span>
+        <span class="level green">Comfortable</span>
+      </div>
+
+      <div class="skill">
+        <div class="simg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" />
+        </div>
+        <span class="name">JavaScript</span>
+        <span class="level yellow">Familiar</span>
+      </div>
+
+      <div class="skill">
+        <div class="simg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" />
+        </div>
+
+        <span class="name">Bootstrap</span>
+        <span class="level green">Comfortable</span>
+      </div>
+
+      <div class="skill">
+        <div class="simg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" />
+        </div>
+
+        <span class="name">Tailwind</span>
+        <span class="level yellow">Familiar</span>
+      </div>
+
+      <div class="skill">
+        <div class="simg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" />
+        </div>
+
+        <span class="name">React</span>
+        <span class="level blue">Learning</span>
+      </div>
+
+      <!-- ================= BACKEND ================= -->
+      <div class="skill">
+        <div class="simg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" />
+        </div>
+
+        <span class="name">Python</span>
+        <span class="level green">Comfortable</span>
+      </div>
+
+      <div class="skill">
+        <div class="simg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" alt="Django" />
+        </div>
+        <span class="name">Django</span>
+        <span class="level blue">Learning</span>
+      </div>
+
+      <!-- ================= DATABASE ================= -->
+      <div class="skill">
+        <div class="simg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" />
+        </div>
+        <span class="name">MySQL</span>
+        <span class="level green">Comfortable</span>
+      </div>
+
+      <div class="skill">
+        <div class="simg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
+        </div>
+        <span class="name">PostgreSQL</span>
+        <span class="level green">Comfortable</span>
+      </div>
+
+      <!-- ================= TOOLS ================= -->
+      <div class="skill">
+        <div class="simg">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" />
+        </div>
+        <span class="name">Git</span>
+        <span class="level yellow">Familiar</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== Journy Section======== -->
+  <section class="journey" id="jorny">
+    <h1 class="journey-title">My Journey</h1>
+    <p class="journey-subtitle">From Learning Basics to Building Real Projects</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="dot"></span>
+        <div class="content">
+          <h3>Diploma in Computer Science</h3>
+          <p>Completed Diploma in Computer Science where I learned programming basics, computer fundamentals and problem-solving concepts.</p>
+          <span class="time">College Phase</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="dot"></span>
+        <div class="content">
+          <h3>Started Web Development Journey</h3>
+          <p>Started serious learning of Web Development focusing on HTML, CSS and understanding how real websites work.</p>
+          <span class="time">July 2025</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="dot"></span>
+        <div class="content">
+          <h3>Frontend Development</h3>
+          <p>Learned JavaScript, Bootstrap and Tailwind CSS. Created responsive layouts and interactive UI components.</p>
+          <span class="time">2025</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="dot"></span>
+        <div class="content">
+          <h3>Backend Development</h3>
+          <p>Worked with Python & Django, Django ORM and MySQL for backend logic and database handling.</p>
+          <span class="time">January 2026</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="dot"></span>
+        <div class="content">
+          <h3>Full Stack Practice & React</h3>
+          <p>Started learning React and integrating frontend with Django backend. Currently improving skills by building real-world projects.</p>
+          <span class="time">Ongoing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== Services Page ====================== -->
+  <section class="services" id="services">
+    <h2 class="section-title">Services</h2>
+    <p class="section-subtitle">What I can build with my current skills</p>
+
+    <div class="services-container">
+      <div class="service-card">
+        <i class="ri-layout-4-line"></i>
+        <h3>Web Design</h3>
+        <p>Clean and responsive website layouts using HTML, CSS, Bootstrap and Tailwind CSS.</p>
+      </div>
+
+      <div class="service-card">
+        <i class="ri-code-s-slash-line"></i>
+        <h3>Frontend Development</h3>
+        <p>Interactive UI with JavaScript, GSAP animations and React fundamentals.</p>
+      </div>
+
+      <div class="service-card">
+        <i class="ri-server-line"></i>
+        <h3>Backend Development</h3>
+        <p>Backend logic using Python & Django with authentication and CRUD operations.</p>
+      </div>
+
+      <div class="service-card">
+        <i class="ri-database-2-line"></i>
+        <h3>Database Management</h3>
+        <p>Working with MySQL, PostgreSQL and basic NoSQL concepts.</p>
+      </div>
+
+      <div class="service-card">
+        <i class="ri-git-branch-line"></i>
+        <h3>Version Control & Deployment</h3>
+        <p>Git & GitHub for version control and basic deployment knowledge.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================ Contact Page ==================== -->
+  <section class="contact-section" id="contactt">
+    <div class="contact-container">
+      <div class="contact-left">
+        <h2>Let’s Connect</h2>
+        <p>I’m currently learning and building real-world projects. If you want to collaborate, discuss ideas, or just say hello, feel free to reach out.</p>
+
+        <div class="contact-info">
+          <div>
+            <i class="fa-solid fa-envelope"></i>
+            <span>sshaniprajapati3@gmail.com</span>
+          </div>
+          <div>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>India | Uttar Pradesh |Azamgarh</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <form id="contactForm" method="POST" data-url="{% url 'home' %}">
+          {% csrf_token %}
+
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="phone" name="phone" placeholder="Your Number" required />
+          <textarea name="message" placeholder="Your Message" required></textarea>
+
+          <button type="submit" id="submitBtn">Send Message</button>
+        </form>
+        <div id="formMessage" class="form-message"></div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
