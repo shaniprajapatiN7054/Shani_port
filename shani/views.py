@@ -51,7 +51,7 @@ def home(request):
                     reply_to=[data["email"]],  # ab EmailMessage me safe hai
                 )
 
-                email_to_me.send(fail_silently=False)
+                # email_to_me.send(fail_silently=False)
 
                 # ===== AUTO REPLY TO USER =====
 
@@ -71,7 +71,7 @@ def home(request):
                     to=[data["email"]],
                 )
                 
-                auto_reply.send(fail_silently=False)
+                # auto_reply.send(fail_silently=False)
             except Exception as e:
                 if request.headers.get("x-requested-with") == "XMLHttpRequest":
                     return JsonResponse(

@@ -254,8 +254,6 @@ gsap.from(".footer-bottom", {
 
 
 // Form Section
-
-
 const form = document.getElementById("contactForm");
 const formMessage = document.getElementById("formMessage");
 const submitBtn = document.getElementById("submitBtn");
