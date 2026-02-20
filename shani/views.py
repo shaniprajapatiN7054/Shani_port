@@ -15,11 +15,6 @@ def home(request):
     if request.method == "POST":
         contact_form = ContactMessageForm(request.POST)
 
-        # if contact_form.is_valid():
-        #     data = contact_form.cleaned_data
-        #     try:
-        #         with transaction.atomic():
-        #             contact_form.save()
         if contact_form.is_valid():
             data = contact_form.cleaned_data
 
@@ -51,7 +46,7 @@ def home(request):
                     reply_to=[data["email"]],  # ab EmailMessage me safe hai
                 )
 
-                # email_to_me.send(fail_silently=False)
+                email_to_me.send(fail_silently=False)
 
                 # ===== AUTO REPLY TO USER =====
 
@@ -71,7 +66,7 @@ def home(request):
                     to=[data["email"]],
                 )
                 
-                # auto_reply.send(fail_silently=False)
+                auto_reply.send(fail_silently=False)
             except Exception as e:
                 if request.headers.get("x-requested-with") == "XMLHttpRequest":
                     return JsonResponse(
