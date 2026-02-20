@@ -44,6 +44,17 @@ body.dark {
     z-index: 999;
 }
 
+/* Tablet & Mobile - bottom right */
+@media (max-width: 1024px) {
+    .theme-toggle {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        left: auto;
+        transform: none;
+    }
+}
+
 /* ============= PAGE LOCK ================ */
 body.loading {
     overflow: hidden;
@@ -493,6 +504,14 @@ body.dark .social i {
     font-size: 14px;
     opacity: 0.6;
     font-family: "F1";
+    display: block;
+}
+
+@media (orientation: landscape) and (max-width: 1024px) {
+    .scroll-down {
+        display: none;
+        bottom: 2vh;
+    }
 }
 
 /* ====== GSAP initial state (hidden for animation) ====== */
@@ -1489,13 +1508,13 @@ body.dark .contact-right button:hover {
 
 .socials {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     font-size: 22px;
 }
 
 .socials a {
     color: #111;
-    opacity: 0.6;
+    opacity: 0.7;
     transition: 0.3s;
 }
 
@@ -1509,7 +1528,7 @@ body.dark .contact-right button:hover {
     text-align: center;
     font-size: 17px;
     font-family: "F1";
-    opacity: 0.5;
+    opacity: 0.6;
     color: #555;
 }
 
@@ -1566,13 +1585,13 @@ body.dark .footer-bottom {
 
     .footer-center h3,
     .footer-right h3 {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .socials {
         justify-content: center;
-        gap: 12px;
-        font-size: 20px;
+        gap: 20px;
+        font-size: 25px;
     }
 
     .footer-bottom {
@@ -1599,15 +1618,15 @@ body.dark .footer-bottom {
 
     .footer-center h3,
     .footer-right h3 {
-        font-size: 16px;
+        font-size: 19px;
     }
 
     .socials {
-        font-size: 18px;
-        gap: 10px;
+        font-size: 20px;
+        gap: 20px;
     }
 
     .footer-bottom {
-        font-size: 11px;
+        font-size: 12px;
     }
 }
