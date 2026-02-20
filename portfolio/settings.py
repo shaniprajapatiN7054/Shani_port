@@ -101,7 +101,8 @@ import dj_database_url
 
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"), conn_max_age=600, ssl_require=True
+        default=os.environ.get("DATABASE_URL"), conn_max_age=600,
+        # ssl_require=True
     )
 }
 
@@ -164,11 +165,12 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS")
 
 
 # HTTPS redirect
-SECURE_SSL_REDIRECT = False  # Agar HTTPS available hai
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True  # Agar HTTPS available hai
 
 # Secure cookies
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
 
 # HSTS headers
 SECURE_HSTS_SECONDS = 31536000
