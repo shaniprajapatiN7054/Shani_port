@@ -164,7 +164,7 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS")
 
 
 # HTTPS redirect
-SECURE_SSL_REDIRECT = True  # Agar HTTPS available hai
+SECURE_SSL_REDIRECT = False  # Agar HTTPS available hai
 
 # Secure cookies
 SESSION_COOKIE_SECURE = True
