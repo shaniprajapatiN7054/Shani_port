@@ -38,37 +38,101 @@ def home(request):
                     contact_form.save()
 
                 # ===== EMAIL TO YOU =====
+                # email_to_me = EmailMessage(
+                #     subject=f"New Contact Message – {data['name']}",
+                #     body=f"Name: {data['name']}\nEmail: {data['email']}\n\nMessage:\n{data['message']}",
+                #     from_email=settings.EMAIL_HOST_USER,
+                #     to=[settings.EMAIL_HOST_USER],
+                #     reply_to=[data["email"]],  # ab EmailMessage me safe hai
+                # )
+
+                # # email_to_me.send(fail_silently=True)
+                # try:
+                #     email_to_me.send(fail_silently=False)
+                # except:
+                #     pass
+                
+                
+                
                 email_to_me = EmailMessage(
                     subject=f"New Contact Message – {data['name']}",
-                    body=f"Name: {data['name']}\nEmail: {data['email']}\n\nMessage:\n{data['message']}",
-                    from_email=settings.EMAIL_HOST_USER,
-                    to=[settings.EMAIL_HOST_USER],
-                    reply_to=[data["email"]],  # ab EmailMessage me safe hai
+                    body=f"""
+                New Contact Message Received
+                
+                Name: {data['name']}
+                Email: {data['email']}
+                
+                Message:
+                {data['message']}
+                """,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=[settings.DEFAULT_FROM_EMAIL],
+                    reply_to=[data["email"]],
                 )
-
-                # email_to_me.send(fail_silently=True)
-                email_to_me.send(fail_silently=False)
+                
+                try:
+                    email_to_me.send()
+                except Exception as e:
+                    print("Admin email failed:", e)
+                
+                
+                
+                
 
                 # ===== AUTO REPLY TO USER =====
 
+                # auto_reply = EmailMessage(
+                #     subject="Thank you for contacting Er. Shani",
+                #     body=f"""
+                #     Hi {data['name']},
+                #     Thank you for contacting me through my portfolio website.
+                    
+                #     I have received your message and will respond within 24 hours.
+
+                #     Best Regards,
+                #     Er. Shani
+                #     Portfolio Website
+                #     """,
+                #     # from_email=settings.EMAIL_HOST_USER,
+                #     from_email=settings.DEFAULT_FROM_EMAIL,
+                #     to=[data["email"]],
+                # )
+                # try:
+                #     auto_reply.send(fail_silently=False)
+                # except:
+                #     pass
+                # auto_reply.send(fail_silently=True)
+                
+                
                 auto_reply = EmailMessage(
                     subject="Thank you for contacting Er. Shani",
                     body=f"""
-                    Hi {data['name']},
-                    Thank you for contacting me through my portfolio website.
-                    
-                    I have received your message and will respond within 24 hours.
+                Hi {data['name']},
 
-                    Best Regards,
-                    Er. Shani
-                    Portfolio Website
-                    """,
-                    from_email=settings.EMAIL_HOST_USER,
+                Thank you for contacting me.
+
+                Here is a copy of your message:
+
+                ---------------------------------
+                {data['message']}
+                ---------------------------------
+
+                I will respond within 24 hours.
+
+                Best Regards,
+                Er. Shani
+                Portfolio Website
+                """,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
                     to=[data["email"]],
                 )
+
+                try:
+                    auto_reply.send(fail_silently=False)
+                except Exception as e:
+                    print("Auto reply failed:", e)
                 
-                auto_reply.send(fail_silently=False)
-                # auto_reply.send(fail_silently=True)
+                
             except Exception as e:
                 if request.headers.get("x-requested-with") == "XMLHttpRequest":
                     print("EMAIL ERROR:", str(e)) 

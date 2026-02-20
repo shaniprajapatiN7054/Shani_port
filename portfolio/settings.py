@@ -57,13 +57,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Add mannually
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # Add mannually
 ]
 
 ROOT_URLCONF = "portfolio.urls"
@@ -156,12 +156,30 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # ================= EMAIL SETTINGS =================
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
+# EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS")
+
+
+
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "smtp.sendgrid.net"
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = "apikey"
+# EMAIL_HOST_PASSWORD = os.environ.get("SENDGRID_API_KEY")
+# DEFAULT_FROM_EMAIL = "sshaniprajapati3@gmail.com"
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS")
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "apikey"   # <-- ALWAYS apikey
+EMAIL_HOST_PASSWORD = os.environ.get("SENDGRID_API_KEY")
+DEFAULT_FROM_EMAIL = "sshaniprajapati3@gmail.com"
 
 
 # HTTPS redirect
@@ -169,8 +187,8 @@ if not DEBUG:
     SECURE_SSL_REDIRECT = True  # Agar HTTPS available hai
 
 # Secure cookies
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # HSTS headers
 SECURE_HSTS_SECONDS = 31536000
