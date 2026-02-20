@@ -295,7 +295,7 @@ if (form) {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    showMessage("Message sent successfully!", "success");
+                    showMessage("Message sent successfully! You Get Message Your Email/Spam Folder", "success");
                     form.reset();
                 } else {
                     showMessage(data.errors.join(", "), "error");
