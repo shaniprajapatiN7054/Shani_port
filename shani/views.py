@@ -169,124 +169,16 @@
 
 
 
-# from django.shortcuts import render, redirect
-# from .forms import ContactMessageForm
-# from django.http import JsonResponse
-# from django.conf import settings
-# from django.db import transaction
-# from django.utils import timezone
-# from datetime import timedelta
-# from .models import ContactMessage
-# import os
-
-# from sendgrid import SendGridAPIClient
-# from sendgrid.helpers.mail import Mail
-
-
-# def home(request):
-#     if request.method == "POST":
-#         contact_form = ContactMessageForm(request.POST)
-
-#         if contact_form.is_valid():
-#             data = contact_form.cleaned_data
-
-#             recent = ContactMessage.objects.filter(
-#                 email=data["email"],
-#                 created_at__gte=timezone.now() - timedelta(seconds=10),
-#             ).exists()
-
-#             if recent:
-#                 return JsonResponse(
-#                     {"success": False, "errors": ["Please wait before sending again."]},
-#                     status=400,
-#                 )
-
-#             try:
-#                 with transaction.atomic():
-#                     contact_form.save()
-
-#                 sg = SendGridAPIClient(os.environ.get("SENDGRID_API_KEY"))
-
-#                 # ===== EMAIL TO YOU =====
-#                 admin_message = Mail(
-#                     from_email=settings.DEFAULT_FROM_EMAIL,
-#                     to_emails=settings.DEFAULT_FROM_EMAIL,
-#                     subject=f"New Contact Message – {data['name']}",
-#                     html_content=f"""
-#                         <strong>New Contact Message Received</strong><br><br>
-#                         Name: {data['name']}<br>
-#                         Email: {data['email']}<br><br>
-#                         Message:<br>
-#                         {data['message']}
-#                     """,
-#                 )
-
-#                 try:
-#                     sg.send(admin_message)
-#                 except Exception as e:
-#                     print("Admin email failed:", e)
-
-#                 # ===== AUTO REPLY TO USER =====
-#                 auto_reply = Mail(
-#                     from_email=settings.DEFAULT_FROM_EMAIL,
-#                     to_emails=data["email"],
-#                     subject="Thank you for contacting Er. Shani",
-#                     html_content=f"""
-#                         Hi {data['name']},<br><br>
-
-#                         Thank you for contacting me.<br><br>
-
-#                         Here is a copy of your message:<br><br>
-
-#                         ---------------------------------<br>
-#                         {data['message']}<br>
-#                         ---------------------------------<br><br>
-
-#                         I will respond within 24 hours.<br><br>
-
-#                         Best Regards,<br>
-#                         Er. Shani<br>
-#                         Portfolio Website
-#                     """,
-#                 )
-
-#                 try:
-#                     sg.send(auto_reply)
-#                 except Exception as e:
-#                     print("Auto reply failed:", e)
-
-#             except Exception as e:
-#                 print("EMAIL ERROR:", str(e))
-#                 return JsonResponse(
-#                     {"success": False, "errors": [str(e)]},
-#                     status=500,
-#                 )
-
-#             return JsonResponse({"success": True}, status=200)
-
-#         else:
-#             errors = [
-#                 str(err) for field in contact_form.errors.values() for err in field
-#             ]
-#             return JsonResponse({"success": False, "errors": errors}, status=400)
-
-#     else:
-#         contact_form = ContactMessageForm()
-
-#     return render(request, "shani/index.html", {"contact_form": contact_form})
-
-
-
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import ContactMessageForm
 from django.http import JsonResponse
 from django.conf import settings
 from django.db import transaction
 from django.utils import timezone
 from datetime import timedelta
-from .forms import ContactMessageForm
 from .models import ContactMessage
 import os
+
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
@@ -298,7 +190,6 @@ def home(request):
         if contact_form.is_valid():
             data = contact_form.cleaned_data
 
-            # Prevent spam: same email within 10 seconds
             recent = ContactMessage.objects.filter(
                 email=data["email"],
                 created_at__gte=timezone.now() - timedelta(seconds=10),
@@ -311,17 +202,12 @@ def home(request):
                 )
 
             try:
-                # Save the contact message
                 with transaction.atomic():
                     contact_form.save()
 
-                # Initialize SendGrid
-                sg_api_key = os.environ.get("SENDGRID_API_KEY")
-                if not sg_api_key:
-                    raise Exception("SENDGRID_API_KEY not set in environment variables.")
-                sg = SendGridAPIClient(sg_api_key)
+                sg = SendGridAPIClient(os.environ.get("SENDGRID_API_KEY"))
 
-                # ===== EMAIL TO ADMIN =====
+                # ===== EMAIL TO YOU =====
                 admin_message = Mail(
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     to_emails=settings.DEFAULT_FROM_EMAIL,
@@ -337,7 +223,6 @@ def home(request):
 
                 try:
                     sg.send(admin_message)
-                    print("Admin email sent successfully to", settings.DEFAULT_FROM_EMAIL)
                 except Exception as e:
                     print("Admin email failed:", e)
 
@@ -348,12 +233,17 @@ def home(request):
                     subject="Thank you for contacting Er. Shani",
                     html_content=f"""
                         Hi {data['name']},<br><br>
+
                         Thank you for contacting me.<br><br>
+
                         Here is a copy of your message:<br><br>
+
                         ---------------------------------<br>
                         {data['message']}<br>
                         ---------------------------------<br><br>
+
                         I will respond within 24 hours.<br><br>
+
                         Best Regards,<br>
                         Er. Shani<br>
                         Portfolio Website
@@ -362,7 +252,6 @@ def home(request):
 
                 try:
                     sg.send(auto_reply)
-                    print("User auto-reply sent successfully to", data["email"])
                 except Exception as e:
                     print("Auto reply failed:", e)
 
@@ -385,3 +274,114 @@ def home(request):
         contact_form = ContactMessageForm()
 
     return render(request, "shani/index.html", {"contact_form": contact_form})
+
+
+
+
+# from django.shortcuts import render
+# from django.http import JsonResponse
+# from django.conf import settings
+# from django.db import transaction
+# from django.utils import timezone
+# from datetime import timedelta
+# from .forms import ContactMessageForm
+# from .models import ContactMessage
+# import os
+# from sendgrid import SendGridAPIClient
+# from sendgrid.helpers.mail import Mail
+
+
+# def home(request):
+#     if request.method == "POST":
+#         contact_form = ContactMessageForm(request.POST)
+
+#         if contact_form.is_valid():
+#             data = contact_form.cleaned_data
+
+#             # Prevent spam: same email within 10 seconds
+#             recent = ContactMessage.objects.filter(
+#                 email=data["email"],
+#                 created_at__gte=timezone.now() - timedelta(seconds=10),
+#             ).exists()
+
+#             if recent:
+#                 return JsonResponse(
+#                     {"success": False, "errors": ["Please wait before sending again."]},
+#                     status=400,
+#                 )
+
+#             try:
+#                 # Save the contact message
+#                 with transaction.atomic():
+#                     contact_form.save()
+
+#                 # Initialize SendGrid
+#                 sg_api_key = os.environ.get("SENDGRID_API_KEY")
+#                 if not sg_api_key:
+#                     raise Exception("SENDGRID_API_KEY not set in environment variables.")
+#                 sg = SendGridAPIClient(sg_api_key)
+
+#                 # ===== EMAIL TO ADMIN =====
+#                 admin_message = Mail(
+#                     from_email=settings.DEFAULT_FROM_EMAIL,
+#                     to_emails=settings.DEFAULT_FROM_EMAIL,
+#                     subject=f"New Contact Message – {data['name']}",
+#                     html_content=f"""
+#                         <strong>New Contact Message Received</strong><br><br>
+#                         Name: {data['name']}<br>
+#                         Email: {data['email']}<br><br>
+#                         Message:<br>
+#                         {data['message']}
+#                     """,
+#                 )
+
+#                 try:
+#                     sg.send(admin_message)
+#                     print("Admin email sent successfully to", settings.DEFAULT_FROM_EMAIL)
+#                 except Exception as e:
+#                     print("Admin email failed:", e)
+
+#                 # ===== AUTO REPLY TO USER =====
+#                 auto_reply = Mail(
+#                     from_email=settings.DEFAULT_FROM_EMAIL,
+#                     to_emails=data["email"],
+#                     subject="Thank you for contacting Er. Shani",
+#                     html_content=f"""
+#                         Hi {data['name']},<br><br>
+#                         Thank you for contacting me.<br><br>
+#                         Here is a copy of your message:<br><br>
+#                         ---------------------------------<br>
+#                         {data['message']}<br>
+#                         ---------------------------------<br><br>
+#                         I will respond within 24 hours.<br><br>
+#                         Best Regards,<br>
+#                         Er. Shani<br>
+#                         Portfolio Website
+#                     """,
+#                 )
+
+#                 try:
+#                     sg.send(auto_reply)
+#                     print("User auto-reply sent successfully to", data["email"])
+#                 except Exception as e:
+#                     print("Auto reply failed:", e)
+
+#             except Exception as e:
+#                 print("EMAIL ERROR:", str(e))
+#                 return JsonResponse(
+#                     {"success": False, "errors": [str(e)]},
+#                     status=500,
+#                 )
+
+#             return JsonResponse({"success": True}, status=200)
+
+#         else:
+#             errors = [
+#                 str(err) for field in contact_form.errors.values() for err in field
+#             ]
+#             return JsonResponse({"success": False, "errors": errors}, status=400)
+
+#     else:
+#         contact_form = ContactMessageForm()
+
+#     return render(request, "shani/index.html", {"contact_form": contact_form})
